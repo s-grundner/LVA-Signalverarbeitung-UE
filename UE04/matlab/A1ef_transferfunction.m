@@ -9,7 +9,7 @@ im = linspace(-1.2, 1.1, 201);
 Z = Re + 1i*Im;
 absHz = abs(H(Z));
 
-range = [0, 2];
+%% Surf Plot
 
 figure;
 surf(Re, Im, absHz);
@@ -23,7 +23,9 @@ shading interp;
 set(gca, 'FontSize', 20)
 view(45,45)
 
-n = linspace(0, 2*pi, 50);
+%% Contour
+
+n = linspace(0, 2*pi, 50); % To show Unit Circle
 figure;
 contourf(Re, Im, absHz, 0:0.1:1.5);
 hold on
@@ -34,8 +36,10 @@ axis equal
 colorbar();
 set(gca, 'FontSize', 20)
 
+%% Frequency Spectrum (Normalized)
+
 omega = linspace(0, 2*pi, 101);
-zDtft = exp(1i*omega);
+zDtft = exp(1i*omega); % eval at unit circle
 H_dtft = abs(H(zDtft));
 figure;
 plot(omega, H_dtft, 'Linewidth', 3);
