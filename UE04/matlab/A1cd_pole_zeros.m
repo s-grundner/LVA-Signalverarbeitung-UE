@@ -47,7 +47,7 @@ ylabel('Im z')
 zlabel('|H(e^{j\Omega})|')
 title('Frequenzgang über der z-Ebene')
 set(gca, 'FontSize', 20)
-view(35,40)
+view(45,45)
 grid
 
 %% Show some Vaules
