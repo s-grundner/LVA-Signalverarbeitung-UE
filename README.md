@@ -1,4 +1,4 @@
-# SigV-UE
+# Signalverarbeitung - UE
 
 Übungen zu Signalverarbeitung
 
