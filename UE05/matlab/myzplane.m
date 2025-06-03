@@ -20,15 +20,6 @@ function myzplane(b, a)
     plot(Kids(1).XData, Kids(1).YData, ':', 'LineWidth', 2)
     plot(Kids(2).XData, Kids(2).YData, 'xr', 'LineWidth', 3, 'MarkerSize', 16)
     plot(Kids(3).XData, Kids(3).YData, 'og', 'LineWidth', 3, 'MarkerSize', 16)
-    z = roots(b);
-    p = roots(a);
-    zplane(z, p);
-    getgca = get(gca);
-    Kids = getgca.Children;
-    hold on
-    plot(Kids(1).XData, Kids(1).YData, ':', 'LineWidth', 2)
-    plot(Kids(2).XData, Kids(2).YData, 'xr', 'LineWidth', 3, 'MarkerSize', 16)
-    plot(Kids(3).XData, Kids(3).YData, 'og', 'LineWidth', 3, 'MarkerSize', 16)
 
     % Region of Convergence
     roc = max(abs(p));
