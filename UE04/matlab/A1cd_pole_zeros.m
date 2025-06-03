@@ -9,7 +9,7 @@ p = roots(a);
 % Customized zplane 
 % https://de.mathworks.com/matlabcentral/answers/2042466-change-intensity-of-zplane-figure
 
-figure
+figure;
 zplane(b, a);
 getgca = get(gca);
 Kids = getgca.Children;
