@@ -6,7 +6,7 @@ k = 1.2;
 [b, a] = residuez(r, p, k);
 [b_min, a_min, b_all, a_all] = decomposeLTI(b, a);
 
-b_csc = conv(b, a_min); % a_min because inverse of h_min
+b_csc = conv(b, a_min);
 a_csc = conv(a, b_min);
 
 figure;

@@ -8,14 +8,6 @@ a = [1, -3/4, 0, 1/4];
 %% Pole Zero Plots
 
 figure;
-subplot(1,2,1)
-myzplane(b, a)
-title('Pol-Nullstellen Diagramm', 'Gesamtsystem')
-subplot(1,2,2)
-myzplane(b_min, a_min)
-title('Pol-Nullstellen Diagramm', 'Minimalphasensystem')
-
-figure;
 subplot(2,3,1)
 zAbsOverlay(b, a);
 title('Gesamtsystem')
@@ -40,6 +32,19 @@ subplot(2,3,6)
 zPhaseOverlay(b_all, a_all);
 title('')
 zlabel('\angle H_a(e^{j\Omega})')
+
+figure;
+zAbsOverlay(a_min, b_min);
+title('inverses Minimalphasensystem')
+zlabel('|H_m(e^{j\Omega})|')
+
+figure;
+subplot(1,2,1)
+myzplane(b, a)
+title('Pol-Nullstellen Diagramm', 'Gesamtsystem')
+subplot(1,2,2)
+myzplane(a_min, b_min)
+title('Pol-Nullstellen Diagramm', 'inverse Minimalphasensystem')
 
 %% Spectrum
 
