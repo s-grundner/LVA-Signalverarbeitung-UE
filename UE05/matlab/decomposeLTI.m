@@ -30,21 +30,19 @@ function [b_min, a_min, b_all, a_all] = decomposeLTI(b_h, a_h)
     z_min = z;
     p_all = zeros(length(z), 1);
     z_all = zeros(length(z), 1);
+    gain = 1;
 
     for i = 1:length(z)
         if abs(z(i)) >= 1
             z_min(i) = 1 / conj(z(i)); % conjugate reciprocal
             p_all(i) = z_min(i); % compensate mirroring
             z_all(i) = z(i); % save zero outside UC as allpass zero
+            gain = gain * abs(z(i)); % accumulate gain added by additional allpass zeros
         end
     end
 
     b_all = poly(z_all);
     a_all = poly(p_all);
-
-    % Degree of allpass numerator polynomial is last nonzero index of b_all
-    poly_deg = find(b_all, 1, 'last');
-    gain = b_all(poly_deg);
 
     % Normalize gain
     b_all = b_all / gain;
