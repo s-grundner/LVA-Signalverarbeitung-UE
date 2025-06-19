@@ -14,11 +14,11 @@
 
 ### Submodule initalisieren
 
-`git clone --recurse-submodules`
+`git clone <url> --recurse-submodules`
 
 - oder mit normalem clone und anschließendem submodules init
 
-`git clone && git submodules init`
+`git clone <url> && git submodules init`
 
 ### Submodule von Overleaf pullen
 
