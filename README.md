@@ -1,8 +1,8 @@
 # Signalverarbeitung - UE
 
-Übungen zu Signalverarbeitung
+Übungen zu Signalverarbeitung - [Moodle Kurs](https://moodle.jku.at/course/view.php?id=36157)
 
-| Nr | Protokoll Link | Keywords |
+| Nr | Protokolle | Keywords |
 | - | - | - |
 | UE01 | [Protokoll](UE01/Signalverarbeitung_UE01.pdf) | Einführung in zeitdiskrete Signale, LTI, Faltung |
 | UE02 | [Protokoll](UE02/Signalverarbeitung_UE02.pdf) | LTI Systeme, DTFT, Abtastung |
