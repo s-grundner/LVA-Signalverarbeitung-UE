@@ -1,0 +1,33 @@
+\begin{highlightblock}[LTI Systeme und DTFT (14 Punkte)]
+\begin{enumerate}
+\item[\ref{aufg:1a}]  Wir betrachten das LTI System mit folgender Impulsantwort:
+
+$$ h_1[n] = \left(\frac{1}{2}\right)^n u[n] $$
+
+wobei $u[n]$ die (diskrete) Sprungfunktion darstellt. Berechnen Sie die Sprungantwort $g_1[n]$ dieses Systems, indem Sie die Faltungssumme anschreiben und auswerten (das Ergebnis soll eine geschlossene Lösung sein). Skizzieren Sie die Impuls- und die Sprungantwort.
+
+\item[\ref{aufg:1b}]  Wenn $h[n]$ absolut summierbar ist, d.h. $\sum_{n=-\infty}^{\infty} |h[n]| < \infty$, dann ist die zeitdiskrete Fourier Transformation (discrete-time Fourier Transform - DTFT) wie folgt gegeben,
+
+\begin{equation}
+H(e^{j\Omega}) := \sum_{n=-\infty}^{\infty}h[n]e^{-j\Omega n}
+\label{eq:dtft}
+\end{equation}
+
+Bestimmen Sie die die Frequenzantwort $H_1(e^{j\Omega})$ analytisch (also ohne Verwendung einer Tabelle). Gerne können Sie natürlich Ihr Ergebnis auf Korrektheit überprüfen.
+
+\item[\ref{aufg:1c}]  Leiten Sie den Betrag der Frequenzantwort $|H_1(e^{j\Omega})|$ her, sodass Sie den Betragsgang qualitativ skizzieren können. Hinweis: Starten Sie hierzu mit folgendem für komplexe Zahlen gültigen Zusammenhang: $|c|^2 = cc^*$, wobei $c^*$ die komplex konjugierte von $c$ ist.
+
+\item[\ref{aufg:1d}] $h_1[n]$ ist eine Sequenz von unendlicher Dauer. Daher kann \texttt{MATLAB} nicht direkt verwendet werden, um $H_1(e^{j\Omega})$ zu berechnen. Allerdings kann der in (b) berechnete Ausdruck $H_1(e^{j \Omega})$ für ein bestimmtes (normiertes) Frequenzintervall ausgewertet werden, um im Anschluss Betrag und Phase (bzw. Real- und Imaginärteil des Frequenzverlaufs darzustellen. Bestimmen Sie $H_1(e^{j \Omega})$ für $4001$ äquidistante Punkte zwischen $[-4\pi, 4\pi]$ und stellen Sie in einzelnen (sub)plots Betrag, Phase, sowie Real- und Imaginärteil dar. Achten Sie wie immer auf eine korrekte Achsenbeschriftung. Was fällt Ihnen in Bezug auf die Periodizität auf?
+
+\item[\ref{aufg:1e}] Betrachten Sie nun ein weiteres LTI System mit einer Sprungantwort. 
+
+$$g_2[n] = \left(\frac{1}{2}\right)^n u[n]$$
+
+Bestimmen Sie die Impulsantwort $h_2[n]$ dieses Systems. Drücken Sie $h_2[n]$ mithilfe von $h_1[n]$ aus.  Skizzieren Sie wieder sowohl Impuls- als auch Sprungantwort.
+
+\textbf{Hinweis:} Um $h_2[n]$ herzuleiten, nutzen Sie die Linearität des Systems und den Fakt, dass $\delta[n] = u[n] - u[n-1]$.
+
+\item[\ref{aufg:1f}] Bestimmen Sie $H_2\left(e^{j\Omega}\right)$ unter der Berücksichtigung der Linearität der DTFT.
+\item[\ref{aufg:1g}] Betrachten Sie nun eine Parallelschaltung der beiden Systeme und berechnen Sie die Impulsantwort $h_p[n]$ des kombinierten Systems. Was fällt Ihnen auf?
+\end{enumerate}
+\end{highlightblock}

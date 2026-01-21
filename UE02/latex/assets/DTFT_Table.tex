@@ -1,0 +1,74 @@
+
+\renewcommand{\arraystretch}{2.0} % Default value: 1
+
+\begin{table}[h]
+\centering
+\caption{DTFT Transformationstabelle}
+\begin{tabular}{| % This Overleaf Error is a Lie
+                >{$\displaystyle}r<{$}
+                >{$\displaystyle}c<{$}
+                >{$\displaystyle}l<{$}|}
+
+\hline x[n]:=\dfrac{1}{2 \pi} \int\limits_{-\pi}^\pi X\left(e^{j \theta}\right) e^{j \theta n} \mathrm{d}\theta
+& \laplace &
+X\left(e^{j \theta}\right):=\sum\limits_{n=-\infty}^{\infty} x[n] e^{-j \theta n} \quad \text{(normiert)} \\
+[2.5ex]
+
+x[n]:=\dfrac{1}{f_s} \int\limits_{-f_s/2}^{f_s/2} X(f) e^{j 2\pi \tfrac{f}{f_s}n} \mathrm{d}f
+& \laplace &
+X(f):=\sum\limits_{n=-\infty}^{\infty} x[n] e^{-j 2\pi \tfrac{f}{f_s} n} \\
+[2.5ex] \hline\hline
+
+x\left[n-n_0\right]
+& \laplace &
+e^{-j \theta n_0} X\left(e^{j \theta}\right) \\ 
+
+e^{j \theta_0 n} x[n]
+& \laplace &
+X\left(e^{j\left(\theta-\theta_0\right)}\right) \\
+
+x^*[n]
+& \laplace &
+X^*\left(e^{-j \theta}\right) \\
+
+x[-n]
+&\laplace &
+X\left(e^{-j \theta}\right) \\
+
+(x * y)[n]=\sum\limits_{k=-\infty}^{\infty} x[k] y[n-k]
+& \laplace &
+X\left(e^{j \theta}\right) Y\left(e^{j \theta}\right) \\
+
+x[n]\cdot y[n]
+& \laplace &
+\dfrac{1}{2 \pi}(X * Y)\left(e^{j \theta}\right)=\dfrac{1}{2 \pi} \int\limits_{-\pi}^\pi X\left(e^{j \lambda}\right) Y\left(e^{j(\theta-\lambda)}\right) \mathrm{d}\lambda \\
+
+x_e[n]=\dfrac{1}{2}\left(x[n]+x^*[-n]\right)
+& \laplace &
+\Re e\left\{X\left(e^{j \theta}\right)\right\} \\
+
+x_o[n]=\dfrac{1}{2}\left(x[n]-x^*[-n]\right)
+& \laplace &
+j \Im m\left\{X\left(e^{j \theta}\right)\right\} \\
+
+\Re e\{x[n]\}
+& \laplace &
+X_e\left(e^{j \theta}\right)=\dfrac{1}{2}\left(X\left(e^{j \theta}\right)+X^*\left(e^{-j \theta}\right)\right) \\
+
+j \Im m\{x[n]\}
+& \laplace &
+X_o\left(e^{j \theta}\right)=\dfrac{1}{2}\left(X\left(e^{j \theta}\right)-X^*\left(e^{-j \theta}\right)\right) \\
+
+n\cdot x[n]
+& \laplace &
+j \dfrac{\mathrm{d}X\left(e^{j \theta}\right)}{\mathrm{d}\theta} \\
+
+\sum\limits_{k=-\infty}^{n} x[k]
+& \laplace &
+\dfrac{1}{1-e^{-j \theta}} X\left(e^{j \theta}\right)+\pi X\left(e^{j \theta}\right) \delta_{2 \pi}(\theta) \\
+[2ex] \hline
+\end{tabular}
+\label{tab:dtft}
+\end{table}
+
+\renewcommand{\arraystretch}{1.0} % Default value: 1

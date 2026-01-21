@@ -1,0 +1,115 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 2                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Impulsantwort}\label{aufg:2a}
+
+Zum ermitteln der Impulsantwort $h[n]$ wird am Eingang des Systems ein Impuls angelegt.
+
+$$ h[n] = -2\delta[n-1]+2\delta[n-2]-2\delta[n-3] $$
+
+\begin{minipage}[t]{.5\textwidth}\vspace{0.8cm}
+\centering
+\plotsequence[1cm]{{1/0}}{$x[n]=\delta[n]$}
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}\vspace{0pt}
+\centering
+\plotsequence[1cm]{{0/0, -2/1, 2/2, -2/3, 0/4}}{$y[n] = h[n]$}
+\end{minipage}
+
+Das System ist ein FIR-System, da es in einem endlichen Intervall klar bestimmt werden kann. Die Impulsantwort kann auch in der Form 
+
+\begin{equation}
+{\color{blue}h[n] = 2(-1)^n} \text{ für } n \in [1,3]
+\end{equation}
+\label{eq:a2a-h}
+
+geschrieben werden.
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Frequenzantwort 1}\label{aufg:2b}
+
+$$ H\left(e^{j\Omega}\right) := \sum\limits_{n=-\infty}^{\infty} h[n] e^{-j\Omega n} $$
+
+Die Definitionsgrenzen für $h[n]$ können in die Summe eingesetzt werden.
+
+
+$$
+H\left(e^{j\Omega}\right) = \sum\limits_{n=1}^{3} 2(-1)^n e^{-j\Omega} = -2e^{-j\Omega} +2e^{-j2\Omega} -2e^{-j3\Omega}
+$$
+
+Aus der Eulerschen Formel (\ref{eq:euler}) und den Symmetrieeigenschaften von Sinus und Cosinus folgt:
+
+\begin{align*}
+&= &&-2 (\cos(-\Omega) +j\sin(-\Omega)) &&+2 (\cos(-2\Omega) +j\sin(-2\Omega)) && -2 (\cos(-3\Omega) +j\sin(-3\Omega)) \\
+&= &&-2 (\cos(\Omega) -j\sin(\Omega)) &&+2 (\cos(2\Omega) -j\sin(2\Omega)) && -2 (\cos(3\Omega)  -j\sin(3\Omega))
+\end{align*}
+
+$$
+\color{blue} H\left(e^{j\Omega}\right) = 2( \cos(2\Omega) - \cos(\Omega) - \cos(3\Omega) ) - j2( \sin(2\Omega) - \sin(\Omega) - \sin(3\Omega) )
+$$
+
+\begin{figure}[h]
+\centering
+\begin{minipage}[t]{.5\textwidth}\vspace{0pt}
+    \includegraphics[width=\linewidth]{assets/A2b_AbsH.png}
+    \caption{Betrag von $H\left(e^{j\Omega}\right)$}
+    \label{fig:a2b-absH}
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}\vspace{3pt}
+    \includegraphics[width=1\linewidth]{assets/A2b_ArgH.png}
+    \caption{Phase von $ H\left(e^{j\Omega}\right) $}
+    \label{fig:a2b-argH}
+\end{minipage}
+\end{figure}
+
+Wie man in Abbildung \ref{fig:a2b-argH} sehen kann, ist die Phase linear. Die Linearität der Phase ist eine Eigenschaft von FIR-Systemen mit spiegel- oder punktsymmetrischer Impulsantwort \cite[p.~217]{GrünigenDanielCh.von2008DS:m}. Dies ist zum Beispiel beim IIR-System (Abbildung \ref{fig:bode}) aus Aufgabe 2 nicht der Fall .
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Frequenzantwort 2}\label{aufg:2c}
+
+\begin{minipage}[t]{.5\textwidth}\vspace{0pt}
+
+$$ H_1\left(e^{j\Omega}\right) = H\left(e^{j(\Omega+\pi)}\right) $$
+
+Hier wird der Zusammenhang
+
+$$
+e^{j \theta_0 n} x[n] \quad \laplace \quad X\left(e^{j\left(\theta-\theta_0\right)}\right) 
+$$
+
+verwendet. Daher gilt für die Impulsantwort unter Anwendung der eulerschen Identität (\ref{eq:euler-ident})
+
+$$ \color{blue} h_1[n] = e^{-j\pi n} h[n] = (-1)^n h[n] $$
+
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}\vspace{3pt}
+\centering
+\plotsequence{{0/0, 2/1, 2/2, 2/3, 0/4}}{$h_1[n]$}
+\end{minipage}
+
+Es handelt sich nun um eine Rechteckfunktion.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Phase des Systems}\label{aufg:2d}
+
+Die Frequenzantwort des linearen Systems ist lediglich eine Frequenzverschiebung eines anderen linearen Systems, weswegen die Phase ebenfalls linear ist.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}[t]{.5\textwidth}\vspace{0pt}
+    \includegraphics[width=\linewidth]{assets/A2d_AbsH.png}
+    \caption{Betrag von $H_1\left(e^{j\Omega}\right)$}
+    \label{fig:a2d-absH}
+\end{minipage}%
+\begin{minipage}[t]{.5\textwidth}\vspace{3pt}
+    \includegraphics[width=1\linewidth]{assets/A2d_ArgH.png}
+    \caption{Phase von $ H_1\left(e^{j\Omega}\right) $}
+    \label{fig:a2d-argH}
+\end{minipage}
+\end{figure}

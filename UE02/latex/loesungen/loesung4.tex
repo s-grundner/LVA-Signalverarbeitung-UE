@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 4                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{H2n Funktion}\label{aufg:4a}
+
+\begin{lstlisting}[language=matlab]
+function H_2n = hadamard2n(H_n)
+    H_2n = [H_n, H_n; H_n, -H_n];
+end
+\end{lstlisting}
+
+\newpage
+
+\subsection{H16 Berechnen}\label{aufg:4b}
+
+\begin{lstlisting}[language=matlab]
+%starting matrix
+H_1 = (1);
+
+%compute the Hadamard-matrix H_16
+H_2 = hadamard2n(H_1);
+H_4 = hadamard2n(H_2);
+H_8 = hadamard2n(H_4);
+H_16 = hadamard2n(H_8);
+\end{lstlisting}
+
+\begin{lstlisting}[language=matlab]
+H_16 =
+ 1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+ 1  -1   1  -1   1  -1   1  -1   1  -1   1  -1   1  -1   1  -1
+ 1   1  -1  -1   1   1  -1  -1   1   1  -1  -1   1   1  -1  -1
+ 1  -1  -1   1   1  -1  -1   1   1  -1  -1   1   1  -1  -1   1
+ 1   1   1   1  -1  -1  -1  -1   1   1   1   1  -1  -1  -1  -1
+ 1  -1   1  -1  -1   1  -1   1   1  -1   1  -1  -1   1  -1   1
+ 1   1  -1  -1  -1  -1   1   1   1   1  -1  -1  -1  -1   1   1
+ 1  -1  -1   1  -1   1   1  -1   1  -1  -1   1  -1   1   1  -1
+ 1   1   1   1   1   1   1   1  -1  -1  -1  -1  -1  -1  -1  -1
+ 1  -1   1  -1   1  -1   1  -1  -1   1  -1   1  -1   1  -1   1
+ 1   1  -1  -1   1   1  -1  -1  -1  -1   1   1  -1  -1   1   1
+ 1  -1  -1   1   1  -1  -1   1  -1   1   1  -1  -1   1   1  -1
+ 1   1   1   1  -1  -1  -1  -1  -1  -1  -1  -1   1   1   1   1
+ 1  -1   1  -1  -1   1  -1   1  -1   1  -1   1   1  -1   1  -1
+ 1   1  -1  -1  -1  -1   1   1  -1  -1   1   1   1   1  -1  -1
+ 1  -1  -1   1  -1   1   1  -1  -1   1   1  -1   1  -1  -1   1 
+\end{lstlisting}
+
+\subsection{Auf orthogonalität Testen}\label{aufg:4c}
+
+\begin{lstlisting}[language=matlab]
+res2_3 = H_16(2,:)*H_16(3,:)';
+res3_4 = H_16(3,:)*H_16(4,:)';
+disp(['Zweite und dritte Zeile von H_16: ', num2str(res2_3)]);
+disp(['Dritte und vierte Zeile von H_16: ', num2str(res3_4)]);
+\end{lstlisting}
+
+Die Ausgabe beider Ausdrücke \m{res2_3} und \m{res3_4} ist gleich \m{0}. Anhand der obigen Definition der Orthogonalität ist diese erfüllt.

@@ -1,0 +1,27 @@
+\begin{highlightblock}[Anwendung Korrelation (8 Punkte)]
+Zwei analoge Signale $x(t)$ und $y(t)$ sind orthogonal, wenn
+
+$$\rho_{xy}^E = \int_{-\infty}^{\infty} x(t)y(t)\mathrm{d}t = 0$$
+
+Den Integralausdruck nennt man auch Skalarprodukt $\langle x(t), y(t)\rangle$. Das zeitdiskrete Äquivalent dieses Skalarproduktes ist
+
+$$\langle x,y\rangle = \sum_{n=1}^N x[n]y[n]$$
+
+Bei der Datenübertragung werden oft Codewörter zur Übertragung eingesetzt. Diese Codewörter sollten dabei einfach zu detektieren sein. Außerdem sollten alle Codewörter untereinander orthogonal sein. Eine mögliche Art von orthogonalen Codewörtern, welche sehr einfach zu erzeugen sind, sind Walsh-Funktionen.
+
+Dazu wird eine Hadamard-Matrix erstellt, deren Zeilen die Walsh-Funktionen beinhaltet. Eine Hadamard-Matrix kann iterativ durch die Vorschrift
+
+$$
+\mathbf{H}_{2n} = \begin{bmatrix}
+\mathbf{H}_n & \mathbf{H}_n \\ \mathbf{H}_n & -\mathbf{H}_n
+\end{bmatrix}
+$$
+
+erzeugt werden. Den Beginn bildet $\mathbf{H}_1 = [1]$
+
+\begin{enumerate}
+\item[\ref{aufg:4a}] Schreiben Sie eine Funktion die aus einer Hadamard-Matrix $\mathbf{H}_n$ die Hadamard-Matrix $H_{2n}$ bildet.
+\item[\ref{aufg:4b}] Berechnen Sie die Hadamard-Matrix $\mathbf{H}_{16}$ an indem Sie die Funktion aus (a) mehrmals hintereinander aufrufen.
+\item[\ref{aufg:4c}] Überprüfen Sie die Orthogonalität zweier Zeilen aus $\mathbf{H}_{16}$ und zwar anhand der 2. und 3. Zeile und der 3. und 4. Zeile.
+\end{enumerate}
+\end{highlightblock}
