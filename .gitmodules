@@ -1,6 +1,3 @@
-[submodule "UE01/Overleaf"]
-	path = UE01/Overleaf
-	url = https://git@git.overleaf.com/67e3d75541a3dd43db9947c2
 [submodule "UE02/67e5386aecce5108ae79cb9c"]
 	path = UE02/Overleaf
 	url = https://git@git.overleaf.com/67e5386aecce5108ae79cb9c
