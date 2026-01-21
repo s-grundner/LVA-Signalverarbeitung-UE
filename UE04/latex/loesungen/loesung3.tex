@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 2                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Blockschaltbild} \label{aufg:3a}
+
+\input{assets/A3a}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Übertragungsfunktion} \label{aufg:3b}
+
+Für jeden Summenterm wird separat eine Transformation durchgeführt. Für die Verzögerung gilt der Rechensatz wie in Tabelle \ref{tab:zt}-2.
+
+$$
+Y(z) = a z^{-1}Y(z) + X(z) \quad \implies \quad Y(z) (1-az^{-1}) = X(z) \quad \implies \quad 
+H(z) = \frac{Y(z)}{X(z)} = \color{blue}\frac{1}{1-az^{-1}}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Stabilität} \label{aufg:3c}
+
+Das System gilt als Stabil, wenn die absolut größte Polstelle innerhalb des Einheitskreises liegt. Die Übertragungsfunktion ist bereits so dargestellt, dass die Polstelle abgelesen werden kann, die hier $a$ ist. Das heißt für Stabilität muss gelten $\color{blue} |a| < 1 $
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Transformation des Eingangssignals} \label{aufg:3d}
+
+Die Transformierte kann hier wieder mit der Korrespondenz (Tabelle \ref{tab:zkorr}-1) ermittelt werden
+
+$$
+x[n] = 3(-1)^nu[n] \quad \implies\quad X(z) = \frac{3z}{z+1} = \color{blue}\frac{3}{1+z^{-1}}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Lösung der Differenzengleichung} \label{aufg:3e}
+
+Das Signal $y[n]$ ist die Lösung einer Differenzengleichung und kann genau wie im zeit kontinuierlichen Fall in eine homogene und in eine partikuläre Lösung zerlegt werden. Dazu muss zuerst die Lösung, hier über die z-Transformation, ermittelt werden.
+
+$$
+Y(z) = H(z)X(z) = \frac{3}{1+z^{-1}}\cdot \frac{1}{1-az^{-1}} \overset{(*)}{=} 3-\frac{3}{(1+a)(z+1)} + \frac{3a^2}{(1+a)(z-a)}
+$$
+
+(*): Wurde mittels \w{Apart[Yz]}\footnote{\url{https://reference.wolfram.com/language/ref/Apart.html}} in Mathematica berechnet. Händisch wäre erst eine Polynomdivision und anschließend eine Partialbruchzerlegung des Restpolynoms notwendig. 
+
+\newpage
+Die Rücktransformation der einzelnen Terme und damit die Lösung der Differenzengleichung lautet
+
+\begin{align*}
+y[n] &= 3 \mathcal{Z}_n\{1\}[n] - \frac{3}{1+a}\mathcal{Z}_n\left\{\frac{1}{z+1}\right\}[n] + \frac{3a^2}{1+a}\mathcal{Z}_n\left\{\frac{1}{z-a}\right\}[n] \\
+&= 3\delta[n] + \frac{3}{1+a}\left(-\mathcal{Z}_n\left\{\frac{z^{-1}z}{z+1}\right\}[n] + a^2\mathcal{Z}_n\left\{\frac{z^{-1}z}{z-a}\right\}[n]\right) \\
+&= 3\delta[n] + \frac{3}{1+a}\left(-\mathcal{Z}_n\left\{\frac{z}{z+1}\right\}[n-1] + a^2\mathcal{Z}_n\left\{\frac{z}{z-a}\right\}[n-1]\right) \\
+&= 3\delta[n] + \frac{3}{1+a}\left(-(-1)^{n-1}u[n-1] + a^2a^{n-1}u[n-1]\right) \\
+&= 3\delta[n] + \frac{3((-1)^n + a^{n+1})}{1+a}u[n-1]
+\end{align*}
+
+für $n=0$ wäre der Term $\frac{3((-1)^n + a^{n+1})}{1+a} = 3\delta[n] = 3$. Der alleinstehende Deltaimpuls kann daher in den Einheitssprung mit aufgenommen werden, wodurch die Verschiebung um $1$ verschwindet.
+
+$$ \color{blue} y[n] = \frac{3((-1)^n + a^{n+1})}{1+a}u[n] $$
+
+\begin{minipage}[t]{0.45\textwidth}
+
+Da wegen der Stabilität gilt, dass $|a|<1$, verschwindet der Term $a^{n+1}$, wenn $n\to\infty$ und der stationärer / partikuläre Anteil ist:
+
+$$ y_{\mathrm{p}}[n] = \frac{3(-1)^{n}}{1+a}u[n] $$
+
+\end{minipage}
+\hspace{0.09\textwidth}
+\begin{minipage}[t]{0.45\textwidth}
+
+Daher beschreibt der andere Summand den transienten / homogenen Anteil \vspace{12pt}
+
+$$ y_{\mathrm{h}}[n] = \frac{3a^{n+1}}{1+a}u[n] $$
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plot für stationärer und transienter Anteil} \label{aufg:3f}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.88\linewidth]{assets/A3f.png}
+    \caption{Signale mit unterschiedlichen Werten von $a$}
+    \label{fig:3f}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection{Alternative Lösung} \label{aufg:3g}
+
+In \ref{aufg:3e} wurde die z-Transformation zur Ermittlung der Lösung der Differenzengleichung verwendet. Das hatte den Vorteil, dass man die Algebraische Gleichung im $z$-Bereich lösen konnte. Um die Differenzengleichung rein im Zeitbereich zu Lösen, könnte man z.B. $y[n]$ rekursiv in sich einsetzen und eine Reihe Bilden. Diese analytisch aufzulösen ist jedoch meist ein hoher Rechenaufwand.

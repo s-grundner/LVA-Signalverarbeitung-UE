@@ -1,0 +1,34 @@
+\RequirePackage{jkureport}
+\RequirePackage{listings}
+
+\newcommand{\m}[1]{\lstinline[language=matlab]{#1}}
+\newcommand{\w}[1]{\lstinline[language=mathematica]{#1}}
+\renewcommand{\labelenumi}{(\alph{enumi})}
+\renewcommand{\labelenumii}{(\roman{enumii})}
+\renewcommand{\thesubsection}{(\alph{subsection})}
+
+\newcommand{\crule}[1]{
+\noindent
+\hrulefill\quad\textbf{#1}\quad\hrulefill
+}
+
+\newcommand{\angabe}[1]{
+    \IfEqCase{#1}{%
+        {1}{ \input{angaben/angabe1} }%
+        {2}{ \input{angaben/angabe2} }%
+        {3}{ \input{angaben/angabe3} }%
+        {4}{ \input{angaben/angabe4} }%
+    }[\PackageError{angabe}{Nummer existiert nicht: #1}{}]%
+}
+
+\newcounter{theaufgabe}\setcounter{theaufgabe}{1}
+
+\newenvironment{aufgabe} {
+\section{Aufgabe}
+\angabe{\arabic{theaufgabe}}
+}
+{
+\stepcounter{theaufgabe}
+\clearpage
+}
+

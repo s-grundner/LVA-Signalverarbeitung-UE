@@ -1,0 +1,20 @@
+\begin{highlightblock}[z-Transformation eines rekursiven Systems (15 Punkte)]
+
+Gegeben sei ein LTI-System beschrieben durch die Differenzengleichung
+
+\begin{equation} \label{eq:1}
+y[n] = \frac{1}{3} x[n] - \frac{1}{8} x[n-1] - \frac{1}{6} y[n-1] -\frac{1}{4} y[n-2]
+\end{equation}
+
+für $n\geq 0$ und $y[-1] = y[-2] = 0$
+
+\begin{enumerate}
+\item[\ref{aufg:1a}] Berechnen Sie die z-Transformierte von $y[n]$.
+\item[\ref{aufg:1b}] Bestimmen Sie die Übertragungsfunktion 
+\item[\ref{aufg:1c}] Bestimmen Sie das Konvergenzgebiet (Region of convergence, ROC).
+\item[\ref{aufg:1d}] Skizzieren Sie das Pol- und Nullstellen Diagramm in der komplexe z-Ebene. Markieren Sie Pole mit einem \m{'x'} und Nullstellen mit einem \m{'o'}. Zeichnen Sie das Konvergenzgebiet (ROC) ein.
+\item[\ref{aufg:1e}] Berechnen Sie in MATLAB den Verlauf von $|H(z)|$ in der komplexen z-Ebene in einem geeigneten Bereich. Nachdem der Betrag an den Polen $\infty$ groß wird, begrenzen Sie jene Werte auf einen vernünftigen Maximalwert. Erstellen Sie nun einen \m{contour} und \m{surf} plot. Tragen Sie den Realteil von $z$ auf der x-Achse, den Imaginärteil von $z$ auf der y-Achse und den resultierenden Betragsgang auf der z-Achse auf. Was können Sie von den Plots ablesen?
+\item[\ref{aufg:1f}] Berechnen Sie den Betragsgang der DTFT $|H\left(e^{j\Omega}\right)|$ und stellen Sie diesen in Matlab grafisch dar.
+\item[\ref{aufg:1g}] Geben Sie ein Beispiel für ein System an, für welches die DTFT nicht existiert. Dieses System soll die gleiche Form wie (\ref{eq:1}) haben, Sie dürfen lediglich die Koeffizienten ändern!
+\end{enumerate}
+\end{highlightblock}

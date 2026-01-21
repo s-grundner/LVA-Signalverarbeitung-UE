@@ -1,0 +1,127 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 1                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{z-Transformierte} \label{aufg:1a}
+
+Für die verzögerten Glieder wird die Rechenregel aus Tabelle \ref{tab:zt}-2 verwendet
+
+\begin{gather*}
+Y(z) = \frac{1}{3}X(z) - \frac{1}{8}z^{-1}X(z) - \frac{1}{6} z^{-1}Y(z) - \frac{1}{4}z^{-2} Y(z) \\
+Y(z) \left(1+ \frac{1}{6}z^{-1} + \frac{1}{4}z^{-2}\right) = X(z) \left(\frac{1}{3} - \frac{1}{8} z^{-1}\right) \\ \\
+\color{blue}Y(z) = X(z)\frac{\frac{1}{3} - \frac{1}{8} z^{-1}}{1+ \frac{1}{6}z^{-1} + \frac{1}{4}z^{-2}}
+\end{gather*}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection{Übertragungsfunktion} \label{aufg:1b}
+
+Hier muss nur noch $X(z)$ auf die andere Seite gebracht werden
+
+$$
+\color{blue} H(z) = \frac{Y(z)}{X(z)} = \frac{\frac{1}{3} - \frac{1}{8} z^{-1}}{1+ \frac{1}{6}z^{-1} + \frac{1}{4}z^{-2}}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Konvergenzgebiet} \label{aufg:1c}
+
+Um das Konvergenzgebiet zu ermitteln müssen zuerst die Pole der Übertragungsfunktion berechnet werden.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/grafik.png}
+\end{figure}
+
+Numerische Werte dafür werden auch vom Matlab-Script \texttt{A1cd\_pole\_zeros.m} ausgegeben.
+
+$$ p = -0.0833 \pm 0.4930i $$
+
+Das Konvergenzgebiet beinhaltet alle $z$, deren Betrag größer ist, als die absolut größten Polstelle, also
+
+$$ \text{ROC} = \{z \in \mathbb{C} : |z| > \max |p|\} $$
+
+In diesem Fall (wird ebenfalls im Matlab Skript ausgegeben), für $\color{blue}|z| > \left|-\tfrac{1}{12}+j\tfrac{1}{12}\sqrt{35}\right| = 0.5 $
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\subsection{Pol Nullstellen Diagramm} \label{aufg:1d}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{assets/poleZeros.png}
+    \caption{Pol-Nullstellen Diagramm}
+\end{figure}
+
+Die ROC ist hierbei der gesamte Bereich außerhalb dem blau-strichliertem Kreis. Der Kreis selbst ist dabei nicht enthalten.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Übertragungsfunktion in der z-Ebene} \label{aufg:1e}
+
+Im Kontourplot ist das Pol-Nullstellen Diagramm wieder zu erkennen. Die gelbe Ebene zeigt, dass der Betrag hier besonders groß wird. Wäre der Plot nicht limitiert, dann sogar unendlich groß.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/contour.png}
+    \caption{Kontourplot der Übertragungsfunktion}
+\end{figure}
+
+\newpage
+
+Der Surface-Plot zeigt nochmal im 3-Dimensionalen, wie die Polstellen in der z-Ebene aussehen.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/surf.png}
+    \caption{Surface-Plot der Übertragungsfunktion}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Betragsgang} \label{aufg:1f}
+
+Der Betrag des Frequenzgangs entsteht, wenn man den Betrag der Übertragungsfunktion am Einheitskreis auswertet. Hierbei ist vorausgesetzt, dass der Einheitskreis im Konvergenzbereich liegt. Bildlich kann die Auswertung am Einheitskreis auch in der z-Ebene dargestellt werden (Matlab-Script\footnote{Quelle: \url{https://de.mathworks.com/help/signal/ref/zplane.html}} \texttt{A1cd\_pole\_zeros.m})
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/FreqZplane.png}
+    \caption{Auswertung am Einheitskreis in der z-Ebene}
+    \label{fig:freqzplane}
+\end{figure}
+
+Hier ist auch die Periodizität des Spektrums zu erkennen, da man immer nach $2\pi$ in der geschlossenen Kurve wieder am selben Punkt ankommt.
+
+\newpage
+
+\begin{block}
+Auf diese Weise kann man sich auch das Ringintegral der inversen z-Transformation vorstellen:
+
+$$ h[n] = \frac{1}{j2\pi}\oint_{C}H(z)z^{n-1}\mathrm{~d}z $$
+\end{block}
+
+Die in Abbildung \ref{fig:freqzplane} abgebildete Kurve kann \textit{ausgerollt} werden und man erhält den herkömmlichen Betragsgang im Intervall $(0, 2\pi)$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\linewidth]{assets/Frequenzgang.png}
+    \caption{Frequenzgang}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{System ohne existenter DTFT} \label{aufg:1g}
+
+Der am Einheitskreis auszuwertende Frequenzgang existiert nur, wenn der Einheitskreis auch im Konvergenzgebiet liegt. Ein System, für das die DTFT nicht existiert besitzt daher Polstellen $|p| \geq 1$. Durch experimentieren mit den Koeffizienten, hat z.B. das System
+
+$$
+H(z) = \frac{Y(z)}{X(z)} = \frac{\frac{1}{3} - \frac{1}{8} z^{-1}}{1+ z^{-1} + 2z^{-2}}
+$$
+
+diese Eigenschaft mit $\max|p| = \sqrt{2}$
+

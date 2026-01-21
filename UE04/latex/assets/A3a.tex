@@ -1,0 +1,20 @@
+\begin{center}
+\begin{tikzpicture}[node distance=0.8cm, line width=1pt]
+    \tikzstyle{delay} = [draw, shape=rectangle]
+    \tikzstyle{circ} = [draw, shape=circle]
+    \tikzstyle{branch} = [fill, shape=circle, minimum size=4pt, inner sep=0pt]
+    \tikzset{con/.style = {arrows={-Latex[length=7pt]}}}
+    
+    \node at (0,0) (in) {$x[n]$};
+    \node[circ, right = of in] (p) {+};
+    \node[delay, below = of p] (z) {$z^{-1}$};
+    \node[circ, right = of z] (a) {$a$};
+    \node[branch] at (p -| a) (b) {};
+    \node[right = of b ] (out) {$y[n]$};
+    \draw[con] (in) -- (p);
+    \draw[con] (z) -- (p);
+    \draw[con] (a) -- (z);
+    \draw[con] (b) -- (a);
+    \draw[con] (p) -- (b) -- (out);
+\end{tikzpicture}
+\end{center}

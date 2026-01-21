@@ -1,0 +1,21 @@
+\begin{highlightblock}[Einschwingvorgang eines LTI-Systems (15 Punkte)]
+Gegeben sei ein System mit Differenzengleichung
+
+$$ y[n] = ay[n-1] + x[n] $$
+
+\begin{enumerate}
+\item[\ref{aufg:3a}] Skizzieren Sie das Blockschaltbild des Systems. 
+\item[\ref{aufg:3b}] Berechnen Sie die Übertragungsfunktion $H(z) = \dfrac{Y(z)}{X(z)}$
+\item[\ref{aufg:3c}] Für welchen Wertebereich von $a$ ist das System stabil?
+\item[\ref{aufg:3d}] Das System wird nun mit folgender Eingangssequenz beaufschlagt:
+
+$$ x[n] = 3(-1)^n u[n] $$
+
+Berechnen Sie dessen z-Transformierte $X(z)$ analytisch!
+
+\item[\ref{aufg:3e}] Nachdem das Eingangssignal erst zum Zeitpunkt $n = 0$ beaufschlagt wird, ergibt sich naturgemäß ein Einschwingvorgang sowie eine eingeschwungene Lösung im Ausgangssignal $y[n]$. Ermitteln Sie diese beiden Anteile mit Hilfe der z-Transformation für die gegebene Eingangssequenz $x[n]$ analytisch.
+\item[\ref{aufg:3f}] Stellen Sie nun die Ausgangssequenz $y[n]$, als auch deren einzelne Anteile (Einschwingvorgang und die eingeschwungene Lösung) dar. Verwenden Sie dazu einen \m{subplot} in MATLAB, um diese drei Signale untereinander darzustellen. Wählen Sie im ersten Schritt einen vernünftigen Wert für $a$, sodass das System stabil ist. Wählen Sie in einem zweiten Schritt $a$ so, sodass das System instabil wird. Fügen Sie die Diagramme für beide Fälle in Ihrem Protokoll ein.
+\item[\ref{aufg:3g}] Wie würden Sie diese Problemstellung ohne die z-Transformation lösen? Was wäre der Nachteil davon?
+\end{enumerate}
+Tipp: Verwenden Sie für die Partialbruchzerlegung den Befehl \m{residuez} in MATLAB.
+\end{highlightblock}
