@@ -2,40 +2,29 @@
 \renewcommand{\rm}{}
 
 \begin{table}[h]
-\centering
-\caption{Rechensätze für kausale Signale}
-\begin{tabular}{|c| % This Overleaf Error is a Lie
-                >{$\displaystyle}r<{$}
-                >{$\displaystyle}c<{$}
-                >{$\displaystyle}l<{$}|}
-\hline
-1. & X(z) = \mathcal{Z}_n\{x[n]\}(z) & := &\sum\limits_{n=0}^{\infty} x[n] z^{-n} \\
-[2.5ex] \hline \hline
-
-2. &  \mathcal{Z}_n\{x[n-k]\}(z) & = & z^{-k}\mathcal{Z}_n\{x[n]\}(z)
-
-\\
-[2.5ex] \hline
-\end{tabular}
-\label{tab:zt}
+	\centering
+	\caption{Rechensätze für kausale Signale} \label{tab:zt}
+	\begin{tabularx}{\textwidth}{|c|
+		>{$\displaystyle}Y<{$}
+			>{$\displaystyle}c<{$}
+		>{$\displaystyle}Y<{$}|}
+		\hline
+		1. & X(z) = \mathcal{Z}_n\{x[n]\}(z) & := & \sum\limits_{n=0}^{\infty} x[n] z^{-n} \\ [2.5ex] \hline \hline
+		2. & \mathcal{Z}_n\{x[n-k]\}(z)      & =  & z^{-k}\mathcal{Z}_n\{x[n]\}(z)         \\ [2.5ex] \hline
+	\end{tabularx}
 \end{table}
 
 \begin{table}[h]
-\centering
-\caption{z-Korrespondenztabelle}
-\begin{tabular}{|c| % This Overleaf Error is a Lie
-                >{$\displaystyle}r<{$}
-                >{$\displaystyle}c<{$}
-                >{$\displaystyle}l<{$}|}
-\hline
-
-1. & a^n u[n]
-& \ztransf &
-\quad \frac{z}{z-a}
-
-\\
-[2.5ex] \hline
-\end{tabular}
-\label{tab:zkorr}
+	\centering
+	\caption{z-Korrespondenztabelle} \label{tab:zkorr}
+	\begin{tabularx}{\textwidth}{
+		|c|
+		>{$\displaystyle}Y<{$}
+			>{$\displaystyle}c<{$}
+		>{$\displaystyle}Y<{$}|
+		}
+		\hline
+		1. & a^n u[n] & \ztransf & \quad \frac{z}{z-a} \\ [2.5ex] \hline
+	\end{tabularx}
 \end{table}
 \renewcommand{\arraystretch}{1.0} % Default value: 1

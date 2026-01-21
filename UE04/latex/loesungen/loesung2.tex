@@ -12,25 +12,25 @@ $$ X_1(z) = \ln \left(1-2z^{-1}\right) $$
 In diesem Fall gilt also $x = -2z^{-1}$, und einsetzen in die Potenzreihenentwicklung des Logarithmus (\ref{eq:potln}) liefert
 
 $$
-X_1(z) = \sum_{n=1}^\infty (-1)^{n+1} \frac{(-2z^{-1})^n}{n} = \sum_{n=1}^\infty (-1)^{n+1} \frac{(-2)^n}{n} z^{-n}
+	X_1(z) = \sum_{n=1}^\infty (-1)^{n+1} \frac{(-2z^{-1})^n}{n} = \sum_{n=1}^\infty (-1)^{n+1} \frac{(-2)^n}{n} z^{-n}
 $$
 
 In der resultierenden Reihe lassen sich die zwei versetzt alternierenden Reihen in ein Vorzeichen Auflösen. Nun ähnelt die Reihe schon der Definition der z-Transformation (Tabelle \ref{tab:zt}-1) und es muss nur mehr ein Index-Shift vorgenommen werden.
 
 $$
-X_1(z) = -\sum_{n=1}^\infty \frac{2^n}{n} z^{-n} = -\sum_{n=0}^\infty \frac{2^{(n+1)}}{n+1} z^{-(n+1)} = -2z^{-1}\left( \sum_{k=0}^{\infty} \frac{2^{n}}{n+1}z^{-n} \right)
+	X_1(z) = -\sum_{n=1}^\infty \frac{2^n}{n} z^{-n} = -\sum_{n=0}^\infty \frac{2^{(n+1)}}{n+1} z^{-(n+1)} = -2z^{-1}\left( \sum_{k=0}^{\infty} \frac{2^{n}}{n+1}z^{-n} \right)
 $$
 
 Die Transformierte lässt sich nun mit dem kausalen Signal anschreiben
 
 $$
-X_1(z) = -2z^{-1} \mathcal{Z}_n\left\{ \frac{2^n}{n+1}u[n] \right\}(z) = -2z^{-1} \mathcal{Z}_n\{f[n]\}(z)
+	X_1(z) = -2z^{-1} \mathcal{Z}_n\left\{ \frac{2^n}{n+1}u[n] \right\}(z) = -2z^{-1} \mathcal{Z}_n\{f[n]\}(z)
 $$
 
 Die Multiplikation mit $z^{-1}$ korrespondiert zu einer zeitlichen Verschiebung des Signals um $1$ (Tabelle \ref{tab:zt}-2), und die Transformation lautet schließlich
 
 $$
-X_1(z)\quad \Ztransf \quad x_1[n] = -2 f[n-1] = -2 \frac{2^{n-1}}{n-1+1}u[n-1] = \color{blue}-\frac{2^n}{n}u[n-1]
+	X_1(z)\quad \Ztransf \quad x_1[n] = -2 f[n-1] = -2 \frac{2^{n-1}}{n-1+1}u[n-1] = \color{blue}-\frac{2^n}{n}u[n-1]
 $$
 
 \newpage
@@ -42,14 +42,14 @@ $$
 Erst wird der Ausdruck auf die Form
 
 \begin{equation}
-X_2(z) = \frac{b_0 + b_1 z^{-1} b_2 z^{-2}}{a_0 + a_1 z^{-1} a_2 z^{-2}}
-\label{eq:1b}
+	X_2(z) = \frac{b_0 + b_1 z^{-1} b_2 z^{-2}}{a_0 + a_1 z^{-1} a_2 z^{-2}}
+	\label{eq:1b}
 \end{equation}
 
 gebracht.
 
 $$
-X_2(z) = \frac{5}{z-\frac{1}{2} - \frac{3}{8} z^{-1}} \cdot \frac{z^{-1}}{z^{-1}} = \frac{5z^{-1}}{1-\frac{1}{2}z^{-1} - \frac{3}{8} z^{-2}}
+	X_2(z) = \frac{5}{z-\frac{1}{2} - \frac{3}{8} z^{-1}} \cdot \frac{z^{-1}}{z^{-1}} = \frac{5z^{-1}}{1-\frac{1}{2}z^{-1} - \frac{3}{8} z^{-2}}
 $$
 
 Mit Matlab\footnote{\url{https://www.mathworks.com/help/signal/ref/residuez.html}} kann der Ausdruck in die Partialbruchdarstellung gebracht werden:
@@ -61,26 +61,26 @@ Mit Matlab\footnote{\url{https://www.mathworks.com/help/signal/ref/residuez.html
 liefert die Koeffizienten der Darstellung
 
 $$
-X_2(z) = \frac{r_0}{1-p_0 z^{-1}} + \dots + \frac{r_N}{1-p_N z^{-1}} + k_0 + k_1z^{-1} + \dots
+	X_2(z) = \frac{r_0}{1-p_0 z^{-1}} + \dots + \frac{r_N}{1-p_N z^{-1}} + k_0 + k_1z^{-1} + \dots
 $$
 
 Dabei ist $N$ der Grad des Nennerpolynoms (ist Zählergrad $>$ Nennergrad, liefert $k$ die Koeffizienten des Polynoms nach der Integrierten Polynomdivision). $r$ steht für \textit{residues} und $p$ für \textit{poles}.
 
 In diesem Fall ist \m{b = [0, 5, 0]} und \m{a = [1, -1/2, -3/8]} (siehe \ref{eq:1b}). \m{residuez} liefert
-\begin{itemize}
-    \item \m{r = [-3.77964473,  3.77964473]}
-    \item \m{p = [-0.41143783,  0.91143783]}
-    \item \m{k = []},
+\begin{itemize}[noitemsep]
+	\item \m{r = [-3.77964473,  3.77964473]}
+	\item \m{p = [-0.41143783,  0.91143783]}
+	\item \m{k = []},
 \end{itemize}
 
 also den Term
 
 $$
-X_2(z) = \frac{-3.78}{1+0.41 z^{-1}} + \frac{3.78}{1-0.91 z^{-1}} = \frac{-3.78z}{z+0.41} + \frac{3.78z}{z-0.91}
+	X_2(z) = \frac{-3.78}{1+0.41 z^{-1}} + \frac{3.78}{1-0.91 z^{-1}} = \frac{-3.78z}{z+0.41} + \frac{3.78z}{z-0.91}
 $$
 
 Für diese Darstellung lässt sich die Korrespondenz in Tabelle \ref{tab:zkorr}-1 anwenden.
 
 $$
-\color{blue} x_2[n] = 3.78 \cdot u[n](0.91^n - (-0.41)^n)
+	\color{blue} x_2[n] = 3.78 \cdot u[n](0.91^n - (-0.41)^n)
 $$

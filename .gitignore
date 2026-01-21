@@ -4,4 +4,5 @@ build
 *.log
 *.synctex.gz
 *.toc
+*.mx1
 _minted
