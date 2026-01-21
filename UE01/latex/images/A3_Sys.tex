@@ -1,0 +1,34 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\newcommand{\plotsequence}[2]{%
+    \begin{tikzpicture}[scale=0.3, font=\tiny]
+    \draw (4.5, 3) node{\small #2};
+    \draw[<->] (-2.5,0) -- (4.5,0) node[right] {\small $n$};
+    \foreach \x/\n in #1 {
+        \filldraw[blue] (\n,\x) circle (3pt) node[above] {\x};
+        \draw[dashed,gray] (\n,0) -- (\n,\x);
+        \draw (\n,0.1) -- (\n,-0.1) node[below] {\n};
+    }
+    \end{tikzpicture}
+}
+
+\newcommand{\sys}{
+    \begin{tikzpicture}
+    \usetikzlibrary{shapes, arrows}
+    \tikzstyle{block} = [draw, shape=rectangle, minimum height=2.5em, minimum width=2.5em, node distance=2cm, line width=1pt]
+    \node [block] at (0,0) (t){$\mathcal{T}$};
+    \draw[->] (-1,0) -- (t) -- (1,0);
+    \draw (0,-1) -- (0,-1); % Pfusch to stop auto centering
+    \end{tikzpicture}
+}
+
+\begin{document}
+
+\begin{tabular}{ccc}
+    \plotsequence{{1/0, 2/1}}{$x_1[n]$} & \sys & \plotsequence{{0/0, 2/1, 3/2}}{$y_1[n]$} \\
+    \plotsequence{{0/0, 2/1}}{$x_2[n]$} & \sys & \plotsequence{{0/0, 0/1, 2/2, 4/3}}{$y_2[n]$} \\
+    \plotsequence{{0/0, 0/1, 0/2, 0/3, 1/4}}{$x_3[n]$} & \sys & \plotsequence{{3/-2, 2/-1, 0/0}}{$y_3[n]$}
+\end{tabular}
+
+\end{document}

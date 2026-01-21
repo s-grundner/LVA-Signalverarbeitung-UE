@@ -1,0 +1,148 @@
+% !TeX program = xelatex
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !BIB program = biber
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%%            JJJJ   K                         K   UUUU         UUUU  
+%%            JJJJ   KKKK                   KKKK   UUUU         UUUU  
+%%            JJJJ   KKKKKK               KKKKKK   UUUU         UUUU  
+%%            JJJJ      KKKKKK         KKKKKK      UUUU         UUUU  
+%%            JJJJ         KKKKKK   KKKKKK         UUUU         UUUU  
+%%            JJJJ            KKKKKKKKK            UUUU         UUUU  
+%%    JJ     JJJJJ               KKK               UUUUU       UUUUU  
+%%  JJJJJJJJJJJJJ    KKKKKKKKKKKKKKKKKKKKKKKKKKK    UUUUUUUUUUUUUUU   
+%%    JJJJJJJJJ      KKKKKKKKKKKKKKKKKKKKKKKKKKK      UUUUUUUUUUU     
+%% 
+%%             Template created by Michael Roland (2021)
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\documentclass[
+    a4paper,
+    oneside,
+    11pt,
+    english,
+    ngerman
+]{scrartcl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\usepackage[utf8]{inputenc}
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\usepackage[
+    techreport,
+    TNF,
+    nocompactverb,
+    nofancyfonts,
+    logopath=../../assets/logos,
+    fontpath=../../assets/fonts,
+    equalmargins
+]{jkureport}
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\usepackage{amsfonts, amsmath}
+\usepackage{subfigure}
+\usepackage{trfsigns} % Transformation signs
+\usepackage{angaben}
+\usepackage{minted}
+\usepackage{pdfpages}
+\usepackage[normalem]{ulem}
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\title{UE01 Signalverarbeitung}
+\subtitle{Protokoll\\%
+	\usekomafont{subtitlesmall}%
+	\hfill\\%
+	Gruppe 13 - SoSe 2025\\
+	\hfill\\%
+}
+
+\author{%
+	Stephanie Vidovic k01505694 \and Simon Grundner k12136610
+	\affiliation{Institute of Signal~Processing}
+	\authornewline
+	\authormail{k01505694@students.jku.at}
+	\authormail{k12136610@students.jku.at}
+	\authorweb{https://jku.at/isp}
+	\authornewline
+}
+
+\date{2025-04-02}
+\partnerlogo{../../assets/logos/ISP-Logo-color.png}
+\setbottommark{Stephanie Vidovic (k01505694), Simon Grundner (k12136610)}
+\keywords{Einführung in zeitdiskrete Signale, LTI, Faltung}
+\maketitle
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+\cleardoubleoddpage
+\tableofcontents
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+\cleardoubleoddpage
+
+\begin{aufgabe}
+	\input{loesungen/loesung1}
+\end{aufgabe}
+
+\begin{aufgabe}
+	\input{loesungen/loesung2}
+\end{aufgabe}
+
+\begin{aufgabe}
+	\includepdf[pages={1}]{loesungen/loesung34_Stephi.pdf}
+\end{aufgabe}
+
+\begin{aufgabe}
+	\includepdf[pages={2-}]{loesungen/loesung34_Stephi.pdf}
+\end{aufgabe}
+
+\begin{aufgabe}
+	\input{loesungen/loesung5}
+\end{aufgabe}
+
+\appendix
+\section*{Anhang}
+\addcontentsline{toc}{section}{Anhang}
+
+\section*{Feedback}
+\addcontentsline{toc}{section}{Feedback}
+
+\begin{block}
+	Durchgestrichenes Korrigiert
+\end{block}
+
+\begin{itemize}
+	\item [1.b.] \sout{Zeitvariant -2P}
+	\item [4.] $z^{-n}$ für Verzögerung um $n$ Zeitschritte \\
+	      \textit{SG: Wortwahl statt n-Fach Delay}
+\end{itemize}
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cleardoubleoddpage
+
+\end{document}
+\endinput

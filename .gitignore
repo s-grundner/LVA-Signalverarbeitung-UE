@@ -1,1 +1,7 @@
 build
+
+*.aux
+*.log
+*.synctex.gz
+*.toc
+_minted

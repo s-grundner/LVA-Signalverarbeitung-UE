@@ -1,0 +1,31 @@
+Die Systeme sind zeitinvariant, wenn die Forderung
+
+$$y[n-n_0] \overset{!}{=} f(x[n-n_0])$$
+
+erfüllt ist, also wenn eine Zeitverschiebung am Eingang eine Zeitverschiebung am Ausgang verursacht.
+
+\subsection*{(a)}
+
+\begin{align*}
+y[n-n_0] &= 10\sin{(0.1\pi (n-n_0))}~x[n-n_0]\tag{ZVA} \\
+x[n] & \mapsto 10\sin{(0.1\pi {\color{red}n})}~x[n-n_0]\tag{ZVE}
+\end{align*}
+
+Die beiden Terme sind nicht gleich und das System ist daher \textbf{zeitvariant}.
+
+Alternative Begründung: Das System hat die Form $y[n] = f(n, x[n])$ und ist aufgrund der Abhängigkeit von $n$ außerhalb des Arguments von $x[n]$ zeitvariant.
+
+\subsection*{(b)}
+
+\begin{align*}
+y[n-n_0] &= x[(n-n_0)+1] - x[1-(n-n_0)]\tag{ZVA}\\
+&= x[n-n_0+1] - x[1-n{\color{red}+}n_0] \\
+x[n] &\mapsto x[n+1-n_0] - x[1-n{\color{red}-}n_0]\tag{ZVE}
+\end{align*}
+
+Die beiden Ausdrücke sind unterschiedlich, daher ist das System \textbf{zeitvariant}. Hier ist folgendes zu beachten:
+
+\begin{itemize}
+    \item[\textbf{ZVE:}] Bei der Verschiebung am Eingang wird zum gesamten Argument $-n_0$ angehängt, unabhängig was im Argument von $x[n]$ steht.
+    \item[\textbf{ZVA:}] Bei der Verschiebung am Ausgang, geht das Symbol $n$ über auf $n-n_0$, es ist also beim einsetzen das Vorzeichen von $n$ auch für $n_0$ zu berücksichtigen
+\end{itemize}

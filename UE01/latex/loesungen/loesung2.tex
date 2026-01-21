@@ -1,0 +1,77 @@
+Das zeitdiskrete Signal $x[n]$ ist periodisch mit der ganzzahligen Periode $N$, wenn gilt:
+
+$$x[n] = x[n+N]$$
+
+Das kleinste $N$, das die Gleichung erfüllt, ist die gesuchte Grundperiode. Für trigonometrische Funktionen muss ebenfalls die Periodizität gelten.
+
+$$\sin{(\varphi(n))} = \sin{(\varphi(n)+2\pi k)}\quad\cos{(\varphi(n))} = \cos{(\varphi(n)+2\pi k)}, \quad k \in \mathbb{Z}$$
+
+\subsection*{(a)}
+
+\begin{align*}
+\cos{\left(\frac{30}{105}\pi(n+N)\right)} &\overset{!}{=} \cos{\left(\frac{30}{105}\pi n + 2\pi k\right)} &&\Bigg|\arccos \\
+\frac{30}{105}\pi(n+N) &\overset{!}{=} \frac{30}{105}\pi \left(n+ 2k\cdot\frac{105}{30}\right) &&\Bigg| \frac{105}{30\pi} \ \Bigg| -n \\
+N&\overset{!}{=} \frac{105}{15}k = 7k
+\end{align*}
+
+Das kleinste ganzzahlige Ergebnis liefert $k=1\implies N=7$. In den folgenden Rechnungen wird die Forderung direkt an das Argument der Winkelfunktion gestellt.
+
+\begin{minipage}[t]{0.49\textwidth}
+
+\subsection*{(b)}
+
+\begin{align*}
+    0.02\pi (n+N) &\overset{!}{=} 0.02\pi n + 2\pi k\\
+    \frac{1}{50}\pi(n+N) &\overset{!}{=} \frac{1}{50}\pi (n+100k) \\
+    N &\overset{!}{=} 100k \implies N = 100
+\end{align*}
+
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+
+\subsection*{(c)}
+
+\begin{align*}
+5(n+N) &\overset{!}{=} 5n + 2\pi k \\
+5n+5N &\overset{!}{=} 5n + 2\pi k \\
+5N &\overset{!}{=} 2\pi k
+\end{align*}
+\centering
+$\pi$ ist irrational, daher ist \\
+das Signal nicht periodisch.
+\end{minipage}
+
+\newpage
+
+\begin{minipage}[t]{0.49\textwidth}
+\subsection*{(d)}
+
+\begin{align*}
+5\pi (n+N) &\overset{!}{=} 5\pi n + 2\pi k \\
+5\pi n+ 5\pi N  &\overset{!}{=} 5\pi n + 2\pi k \\
+5\pi N &\overset{!}{=} 2k\pi \\
+N &\overset{!}{=} \frac{2}{5}k \implies N = 2
+\end{align*}
+
+\end{minipage}
+\begin{minipage}[t]{0.49\textwidth}
+\subsection*{(e)}
+
+\begin{align*}
+\frac{62}{10}\pi (n+N) &\overset{!}{=} \frac{62}{10}\pi n + 2\pi k \\
+\frac{62}{10}\pi n+\frac{62}{10}\pi N &\overset{!}{=} \frac{62}{10}\pi n + 2\pi k \\
+N&\overset{!}{=} \frac{20}{62} k = \frac{10}{31}k \implies N = 10
+\end{align*}
+
+\end{minipage}
+
+\vspace{10pt}
+
+Veranschaulicht durch \m{stem} Plots:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\linewidth]{images/Signals.png}
+    \caption{Signale}
+    \label{fig:sig}
+\end{figure}

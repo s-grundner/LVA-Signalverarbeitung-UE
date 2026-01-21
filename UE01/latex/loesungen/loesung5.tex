@@ -1,0 +1,100 @@
+\subsection*{(a)}
+
+$N_{ya} = N_x$: Ein- und Ausgang sind gleichgroß:
+
+$$
+\mathbf{y}_a = \mathbf{Ax}, \quad \mathbf{A} \in \mathbb{R}^{N_{ya}\times N_x}
+$$
+
+Die Matrix ist quadratisch. Einsetzen für $n$ in (\ref{eqn:1}) liefert:
+
+\begin{align*}
+y[0] &= a_0 x[0] \\
+y[1] &= a_0 x[1] + a_1 x[0] \\
+y[2] &= a_0 x[2] + a_1 x[1] + a_2 x[0]\\
+& \ \ \vdots \\
+y[N_{ya}-1] &= a_0 x[N_{ya}-1] + a_1 x[N_{ya}-2] + \dots + a_{N_{ya}-1} x[0]\\
+\end{align*}
+
+Eingesetzt in den Vektor $\mathbf{y}_a$:
+
+$$
+\begin{pmatrix}
+    y[0] \\ y[1] \\ y[2] \\ \vdots \\ y[N_{ya}-1]
+\end{pmatrix} = \left(\begin{array}{l}
+    a_0 x[0] \\ a_1 x[0] + a_0 x[1] \\ a_2 x[0] + a_1 x[1] + a_0 x[2] \\ \qquad \vdots \\
+    a_{N_{ya}-1} x[0] + \dots + a_1 x[N_{ya}-2] + a_0 x[N_{ya}-1]
+\end{array}\right)
+$$
+
+\newpage
+
+Durch erkennen der Linearkombination der Vektorelemente aus $\mathbf{x}$, lässt sich die Gleichung schreiben wie:
+
+$$
+\mathbf{y} = \underbrace{\begin{pmatrix}
+    a_0 & 0 & 0 & \cdots & 0 \\
+    a_1 & a_0 & 0 & \cdots & 0 \\
+    a_2 & a_1 & a_0 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    a_{N_{ya}-1} & a_{N_{ya}-2} & a_{N_{ya}-3} & \cdots & a_0 \\
+\end{pmatrix}}_{\mathbf{A}} \mathbf{x}
+$$
+
+\subsection*{(b)}
+
+Auch als Matlab-Skript im Anhang.
+
+\begin{minted}{matlab}
+function [ya,A] = mtxfilter(a,x)
+    %calculate signal length and length of kernel
+    sigLen = length(x);
+    coeffLen = length(a);
+    
+    n = sigLen;
+    m = sigLen+coeffLen-1;
+    
+    A = zeros(m,n);
+    
+    for i = 1:n
+        A(i:i+length(a)-1,i) = a;
+    end
+    
+    ya = A*x';
+end
+\end{minted}
+
+\newpage
+
+\subsection*{(c)}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{images/ya.png}
+    \caption{Eingangssignal $\mathbf{x}$, Impulsantwort von $\mathbf{A}$, Ausgangssignal $\mathbf{y}$ zu $\mathbf{x}$}
+    \label{fig:ya}
+\end{figure}
+
+\newpage
+
+\subsection*{(d)}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{images/yb.png}
+    \caption{Antwort auf $b[n]$}
+    \label{fig:yb}
+\end{figure}
+
+\newpage
+
+\subsection*{(e)}
+
+Da die Eingänge lediglich addiert werden, lässt sich für die Matrix $\mathbf{C}$ einfach $\mathbf{A}$ und $\mathbf{B}$ addieren.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{images/yc.png}
+    \caption{Summe der Ausgänge, Filter mit $\mathbf{C}$, Absoluter Fehler}
+    \label{fig:yc}
+\end{figure}
