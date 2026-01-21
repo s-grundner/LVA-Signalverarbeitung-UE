@@ -1,0 +1,81 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 3                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{z-Transformation} \label{aufg:3a}
+
+$$
+H(z) = 1.2 + \frac{1}{2}\cdot\frac{z}{z+\frac{1}{2}} - \frac{3}{5} \frac{z}{z-\frac{1}{5}} = 1.2 + \frac{\frac{1}{2}}{1+\frac{1}{2}z^{-1}} -  \frac{\frac{3}{5}}{1-\frac{1}{5}z^{-1}}
+$$
+
+Kann mittels der Matlab-Funktion \m{residuez(r, p, k)} wie bereits in vorigen Übungen dokumentiert in Zähler- und Nennerpolynom umgerechnet werden.
+
+$$
+H(z) = \frac{1.1 - 0.04z^{-1} - 0.12 z^{-2}}{1 + 0.3z^{-1} - 0.1 z^{-2}}
+$$
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plot der Impulsantwort} \label{aufg:3b}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{assets/A3b_h.png}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Stabilität Prüfen} \label{aufg:3c}
+
+\m{decomposeLTI} wirf zunächst keinen Fehler für Instabilität und liefert die Koeffizienten für die jeweiligen Anteile
+
+\begin{itemize}
+    \item[\textbf{Allpass:}]
+    \m{b_all = [1, 0, 0]},
+    
+    \m{a_all = [1, 0, 0]}
+    
+    \item[\textbf{Min-Phase:}]
+    \m{b_min = [1.0000, -0.0364, -0.1091]},
+    
+    \m{a_min = [1.0000    0.3000   -0.1000]}
+\end{itemize}
+
+Hier ist zu erkennen, dass die Koeffizienten beim Allpass-Anteil nur $a_0 = 1$ und $b_0 = 1$ sind. Bei einem solchen System ist der Phasengang konstant 0, was heißen muss, dass im Ursprüngliche System nur der Minimalphasenanteil auf die Phase wirkt. Das System ist also selbst ein Minimalphasensystem. Eine Alternative Begründung ist, dass alle ihre Null- (und Polstellen) innerhalb des Einheitskreises liegen.
+
+\begin{figure}[h]
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{assets/A3c_all.png}
+    \caption{Phase des Allpass Anteil}
+\end{minipage}
+\begin{minipage}[t]{0.5\textwidth}
+    \centering
+    \includegraphics[width=0.7\linewidth]{assets/A3c_min.png}
+    \caption{Phasengang des Minimalphasen Anteil gleich dem Phasengang des Gesamtsystems}
+\end{minipage}
+\end{figure}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Plot der inversen Impulsantwort} \label{aufg:3d}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{assets/A3d_hinv.png}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Kaskadierung der Systeme} \label{aufg:3e}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\linewidth]{assets/A3e_hcsc.png}
+\end{figure}
+
+Es bleibt nur ein Delta-Impuls als Resultierende Impulsantwort übrig.

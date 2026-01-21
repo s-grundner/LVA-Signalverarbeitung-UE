@@ -1,0 +1,55 @@
+\begin{center}
+\begin{tikzpicture}[node distance=0.8cm, line width=1pt]
+    \tikzstyle{delay} = [draw, shape=rectangle]
+    \tikzstyle{circ} = [draw, shape=circle]
+    \tikzstyle{branch} = [fill, shape=circle, minimum size=4pt, inner sep=0pt]
+    \tikzset{con/.style = {arrows={-Latex[length=7pt]}}}
+    % Input Delay
+    \node at (0,0) (in) {$x[k]$};
+    \node[delay, above right = of in] (z1) {$z^{-1}$};
+    \node[delay, above = of z1] (z2) {$z^{-1}$};
+    \node[branch] (k1) at ($(z1)!0.5!(z2)$){};
+
+    % Input Multipliers
+    \node[circ, above right = of z2] (c2) {$c_2$};
+    \node[circ] at (k1 -| c2) (c1) {$c_1$};
+
+    % Summation Points
+    \node[circ, right = of c2 |- k1] (p1) {$+$};
+    \node[circ, right = of p1 |- in] (p2) {$+$};
+    \node[circ] at (k1 -| p2) (p3) {$+$};
+
+    % Output Multipliers
+    \node[circ, right = of p3 |- c2] (c4) {$c_4$};
+    \node[circ] at (k1 -| c4) (c3) {$c_3$};
+
+    % Output Delay
+    \node[delay, below right = of c4] (z3) {$z^{-1}$};
+    \node[delay, below = of z3] (z4) {$z^{-1}$};
+    \node[below right = of z4] (out) {$y[k]$};
+
+    % Draw Connections
+    \draw[con] (in) -| (z1);
+    \draw[con] (z1) -- (z2);
+    \draw[con] (z2) |- (c2);
+    \draw[con] (c2) -| (p1);
+    \draw[con] (k1) -- (c1);
+    \draw[con] (c1) -- (p1);
+    \draw[con] (p1) |- node[below]{$\tilde{x}[k]$} (p2);
+    \draw[con] (p3) -- (p2);
+    \draw[con] (z3) |- (c4);
+    \draw[con] (c4) -| (p3);
+    \draw[con] (c3) -- (p3);
+    \draw[con] (p2) -- (out);
+    \draw[con] (out -| z4) node[branch]{} -- (z4);
+    \draw[con] (z4) -- (z3);
+    \draw[con] (k1 -| z4) node[branch]{} -- (c3);
+
+    \begin{scope}[xshift=10.5cm, yshift=0.5cm, node distance=0.3cm]
+    \node at (0,0) (eq4) {$c_4= -\frac{1}{2}$};
+    \node [above = of eq4] (eq3) {$c_3=1$};
+    \node [above = of eq3] (eq2) {$c_2 = \frac{1}{4}$};
+    \node [above = of eq2] {$c_1 = -\frac{1}{4}$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}

@@ -1,0 +1,52 @@
+\begin{highlightblock}[Minimalphasen und Allpass Systeme I (16 Punkte)]
+
+Jedes stabile, kausale LTI System mit der z-Transformierten
+
+\begin{equation}
+H(z) = \frac{b_0+b_1z^{-1}+b_2z^{-2}+\dots}{a_0+a_1z^{-1}+a_2z^{-2}+\dots}
+\end{equation}
+
+kann in ein Produkt eines Minimalphasen $H_m(z)$ und eines Allpass Systems $H_a(z)$ aufgeteilt werden. Dabei hat ein stabiles kausales Minimalphasen System immer eine stabile, kausale Inverse $\frac{1}{H_m(z)}$, d.h., alle Pole und Nullstellen sind innerhalb des Einheitskreises. Der Minimalphasen-Anteil eines kausalen, stabilen LTI Systems wird dadurch erhalten, indem man alle Nullstellen mit Betrag größer $1$ am Einheitskreis spiegelt. Anders formuliert, wenn $z_{0,k}$ die $k$-te Nullstelle von $H(z)$ ist, dann wird die $k$-te Nullstelle $\tilde{z}_{0,k}$ des Minimalphasensystems $H_m(z)$ durch
+
+$$
+\tilde{z}_{0,k} = \begin{cases}
+    z_{0,k} & \text{for } |z_{0,k}| <1 \\
+    \dfrac{1}{z^*_{0,k}} & \text{for } |z_{0,k}| \geq 1 
+\end{cases}
+$$
+
+bestimmt ($^* \to$ konjugiert komplex). Die Pole des Minimalphasen-Anteils sind an der selben Stelle wie die Pole des originalen Systems $H(z)$.
+
+\begin{enumerate}
+\item[\ref{aufg:2a}] Schreiben Sie eine Matlab Funktion
+
+\m{[b_min, a_min, b_all, a_all] = decomposeLTI(b_h, a_h)}
+
+welche die folgenden Aufgaben erfüllt:
+
+\begin{itemize}
+\item Das System ist mittels der Polynomkoeffizienten \m{b_h}, \m{a_h} der Transferfunktion definiert. Überprüfen Sie ob das System stabil ist. Sie können die MATLAB-Funktion \m{roots} verwenden, um die Nullstellen der Polynome zu berechnen.
+    
+\item Falls das System instabil ist, geben Sie eine Warnung am \m{Command Window} aus und setzen Sie alle Rückgabeparameter auf 0.
+
+\item Wenn das System stabil ist, berechnen Sie die Dekomposition von $H(z)$ in das Produkt von $H_m (z)$ (Minimalphasen-Anteil) und $H_a(z)$ (Allpass-Anteil). Das heißt, berechnen Sie die Position der Nullstellen und Pole von $H_m (z)$ und $H_a (z)$.
+
+\item Wenn das System stabil ist, verwenden Sie die MATLAB-Funktion \m{poly} um die Null- stellen und Pole von $H_m(z)$ und $H_a(z)$ auf die entsprechenden Zähler-Polynome bzw. Nenner-Polynome umzuformen. Stellen Sie dabei ein korrekte Skalierung für $H_a(z)$ und $H_m(z)$ sicher, sodass $|H_a(e^{j\Omega} )| = 1$ und $ |H_m (e^{j\Omega} )| = |H(e^{j\Omega} )|$. Setzen Sie die resultierenden Polynome als Rückgabeparameter \m{b_min}, \m{a_min}, \m{b_all}, \m{a_all}.
+
+\item Stellen Sie sicher, dass die Funktion ausreichend kommentiert ist. Inkludieren Sie einen \m{header}, welcher angezeigt wird wenn Sie das Kommando \m{help decomposeLTI} eingeben.
+\end{itemize}
+
+\end{enumerate}
+\end{highlightblock}
+
+\begin{highlightblock}
+\begin{enumerate}
+\item[\ref{aufg:2b}] Betrachten Sie nun das folgende kausale zeitdiskrete System
+
+$$ H(z) = \frac{1+2z^{-1}+ z^{-3}}{1-\frac{3}{4}z^{-1}+\frac{1}{4}z^{-3}} $$
+
+Verwenden Sie das MATLAB-Kommando \m{zplane} um das Pol-Nullstellen Diagramm für das System $H(z)$ darzustellen. Stellen Sie außerdem die Pole und Nullstellen des Allpass-Anteils sowie des (stabilen) inversen Minimalphasen-Anteils dar. Was können Sie beobachten?
+
+\item[\ref{aufg:2c}] Plotten Sie die Frequenzantwort (Betrag und Phase mit \m{freqz}) für das System $H(z)$ und dessen Minimalphasen-Anteil $H_m(z)$. Was können Sie über Betrag und Phase der Systeme aussagen?
+\end{enumerate}
+\end{highlightblock}

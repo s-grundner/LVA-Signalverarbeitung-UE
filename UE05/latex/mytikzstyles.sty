@@ -1,0 +1,69 @@
+\RequirePackage{tikz}
+\RequirePackage{xfrac}
+\usetikzlibrary{decorations.pathreplacing, calligraphy, positioning, arrows.meta}
+
+%% Usage %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \plotsequence{list}{label} - plots a sequence with size -2 to 4
+%  example: list = {1/0, -1/1, 4/2} where elemets are (x/n), label =$x[n]$
+%
+%% \ax - draws a small axis
+%% \nakedsequence{list} - no label or axis, smaller size
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Whole Tikz piktures
+
+% usage ex.: \plotsequence{list}{label}
+% Optinally scale y
+% important: dont forget additional brackets for list: \plotsequence{{1/1,-1/2}}{$x[n]$}
+\newcommand{\plotsequence}[3][2cm]{%
+    \begin{tikzpicture}[scale=0.75, y = #1, thick, font=\footnotesize]
+    \usetikzlibrary{math}
+    \draw (-2, 1) node{\small #3};
+    \draw[<->] (-2.5,0) -- (4.5,0) node[right] {\small $n$};
+    \foreach \x/\n in #2 {
+        \pgfmathparse{\x<0}
+        \ifnum \pgfmathresult=1
+            \draw[dashed,gray] (\n,0) -- (\n,\x);
+            \draw (\n,-0.1) -- (\n,0.1) node[above] {\n};
+            \filldraw[blue] (\n,\x) node[rotate=-45, anchor=north west] {\x} circle (3pt);
+        \else
+            \draw[dashed,gray] (\n,0) -- (\n,\x);
+            \draw (\n,0.1) -- (\n,-0.1) node[below] {\n};
+            \filldraw[blue] (\n,\x) node[rotate=45, anchor=south west] {\x} circle (3pt);
+        \fi
+    }
+    \end{tikzpicture}
+}
+
+%% Only in tikz env
+
+\tikzset{xlabelupper/.style={above = 2pt, fill=white}}
+\tikzset{xlabellower/.style={font = \footnotesize, rotate=45, anchor=north east}}
+
+\newcommand{\spectrum}{
+    \draw[<->] (-3*pi, 0) -- (3*pi, 0) node[right]{$\Omega$};
+    \draw[->] (0, -1) -- (0, 6) node[above, blue]{$|X_s\left(e^{j \Omega}\right)|\cdot 20\pi$};
+    \foreach \i in {2,3,5} {
+        \draw (-0.1, \i) node[left=-2pt]{\footnotesize$\i$} -- (0.1, \i);
+    }
+    \draw[dashed] (pi, -0.1) node[xlabelupper]{$\frac{\Omega_S}{2}$} node[xlabellower]{$\pi$} -- (pi, 5);
+    \draw[dashed] (-pi, -0.1) node[xlabelupper]{$-\frac{\Omega_S}{2}$} node[xlabellower]{$-\pi$} -- (-pi, 5);
+    \draw[dashed] (2*pi, -0.1) node[xlabelupper]{$\Omega_S$} node[xlabellower]{$2\pi$} -- (2*pi, 5);
+    \draw[dashed] (-2*pi, -0.1) node[xlabelupper]{$-\Omega_S$} node[xlabellower]{$-2\pi$} -- (-2*pi, 5);
+}
+
+\newcommand{\dirac}[3]{ % position, height, label
+\draw[->] (#1, 0) node[xlabellower]{#3} -- (#1, #2);
+}
+
+\newcommand{\ax}[1]{
+    \draw[<->] (-3.5,0) -- (3.5,0) node[right]{#1};
+    \draw[->] (0, -0.3) -- (0, 1.5);
+}
+\newcommand{\nakedsequence}[1]{
+    \foreach \x/\n in #1 {
+        \filldraw[blue] (\n,\x) circle (3pt);
+        \draw[dashed,gray] (\n,0) -- (\n,\x);
+    }
+}

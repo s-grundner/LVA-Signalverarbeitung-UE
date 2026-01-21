@@ -1,0 +1,79 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                     Lösung Aufgabe 2                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+    \item Eine etwas detaillierter Beschreibung zu Minimalphasen und Allpass Systemen kann z.B. unter {\color{blue}\url{http://ece-research.unm.edu/bsanthan/ece539/note7.pdf}} gefunden werden 
+    \item Alle Kommentare zwischen Funktionsdefinition und dem ersten Quelltext werden vom \m{help} Kommando angezeigt.
+\end{itemize}
+
+\subsection{Dekomposition in MATLAB}\label{aufg:2a}
+
+Die Funktion ist wie nach Vorschrift der Angabe und mithilfe der verlinkten Ressource implementiert. Die \m{help}-Page für \m{decomposeLTI} gibt folgendes zurück:
+
+\begin{lstlisting}
+decomposeLTI - Takes in a stable system and splits it into Allpass and a Minimalphase parts, such that H = H_min*H_all. If the input system is unstable, an error is returned to the console window and all coefficients return 0.
+
+    Syntax
+      [b_min, a_min, b_all, a_all] = decomposeLTI(b_h, a_h)
+
+    Input Arguments
+      b_h - Transferfunction numerator coefficients vector
+      a_h - Transferfunction denominator coefficients vector
+
+    Output Arguments
+      b_min - Numerator coefficients of Minimalphase Transferfunction
+      a_min - Denominator coefficients of Minimalphase Transferfunction
+      b_all - Numerator coefficients of Allpass Transferfunction
+      a_all - Denominator oefficients of Allpass Transferfunction
+\end{lstlisting}
+
+Damit der Allpass einen Betrag von $1$ hat ist hier wichtig, dass das Polynom bezüglich der 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Pol-Nullstellendiagramm}\label{aufg:2b}
+
+Das Pol-Nullstellen Diagramm wurde in diesem Fall so modifiziert, dass zusätzlich eine Art Bode-Diagramm in die z-Ebene geplottet wird.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/A2b_zplanes.png}
+    \caption{Pol- Nullstellen Diagramm}
+    \label{fig:a2b-zplanes}
+\end{figure}
+
+Hier kann man zunächst sehen, dass sich die Pole und Nullstellen der beiden Komponenten ergänzen und zusammen die Pole und Nullstellen des Gesamtsystems aufweisen. Dort wo Pole und Nullstellen gleichzeitig auftreten, kürzen sich die Terme in der Übertragungsfunktion.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{assets/A2c_min_inv.png}
+    \caption{Enter Caption}
+    \label{fig:a2b-min-inv}
+\end{figure}
+
+Da auch für die inverse alle Pol- und Nullstellen innerhalb des Einheitskreise sind, ist das inverse System ebenfalls kausal und stabil
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Frequenzantwort}\label{aufg:2c}
+
+\begin{itemize}
+    \item[\textbf{Betrag:}] Man kann erkennen, dass er Betragsgang der beiden Systeme gleich ist.
+    \item[\textbf{Phase:}] Der Minimalphasenanteil besitzt die Eigenschaft, dass dessen Phase nicht vollständig um 360° dreht, sondern innerhalb $\pm 180^{\circ}$ bleibt.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/A2c_ges.png}
+    \label{fig:a2c-ges}
+\end{minipage}
+\begin{minipage}{0.49\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{assets/A2c_min.png}
+    \label{fig:a2c-min}
+\end{minipage}
+\end{figure}   

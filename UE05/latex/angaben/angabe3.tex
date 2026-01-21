@@ -1,0 +1,20 @@
+\begin{highlightblock}[Minimalphasen und Allpass Systeme II (14 Punkte)]
+
+Ein kausales System ist durch die Impulsantwort
+
+$$
+h[n] = 1.2 \delta[n] + \frac{1}{2}\left(-\frac{1}{2}\right)^n u[n] - \frac{3}{5} \left(\frac{1}{5}\right)^n u[n]
+$$
+
+definiert.
+
+\begin{enumerate}
+\item[\ref{aufg:3a}] Berechnen Sie analytisch die z-Transformierte $H(z)$ der Impulsantwort.
+\item[\ref{aufg:3b}] Plotten Sie die ersten 50 Samples von $h[n]$. Sie können dazu die MATLAB Funktion \m{impz} verwenden, wobei Sie dieser die Koeffizienten von $H(z)$ übergeben.
+\item[\ref{aufg:3c}] Überprüfen Sie mit ihrer Funktion \m{decomposeLTI} ob das System stabil ist und bestimmen Sie damit die Koeffizienten des Minimalphasen-Anteils sowie des Allpass-Anteils. Handelt es sich hier um ein Minimalphasen System? \textbf{Begründen Sie Ihre Antwort!}
+
+\textit{Anmerkung:} Falls Sie Aufgabe 2 nicht lösen konnten, können Sie die Stabilität und Minimalphasen- Eigenschaft analytisch überprüfen. Tatsächlich kann Aufgabe 2 gänzlich analytisch gelöst werden (es ist eine nette Übung!).
+\item[\ref{aufg:3d}] Plotten Sie die ersten 50 Samples der Impulsantwort $h_{inv}$ von $\frac{1}{H_m(z)}$, der Inversen des Minimalphasen Anteils.
+\item[\ref{aufg:3e}] Verwenden Sie das Kommando \m{impz} um auch längere Sequenzen von $h[n]$ und $h_{inv} [n]$ zu erhalten. Bestimmen und plotten Sie die Impulsantwort der Kaskade der beiden Systeme. Was fällt Ihnen auf?
+\end{enumerate}
+\end{highlightblock}
