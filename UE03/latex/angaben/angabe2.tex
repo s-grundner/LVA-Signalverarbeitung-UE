@@ -1,0 +1,20 @@
+\begin{highlightblock}[Fenstereffekt der DFT I (10 Punkte)] \label{aufg:2}
+Es gibt zwei Fälle bei denen ein Zeitsignal mit der DFT exakt verarbeitet werden kann:
+
+\begin{itemize}
+\item das Signal ist zeit begrenzt
+\item das Signal ist periodisch und die DFT-Länge ist gleich (oder ein ganzzahliges Vielfaches)
+\end{itemize}
+
+der Periodendauer. Ist das nicht der Fall, dann treten bei der Verarbeitung mit der DFT Abweichungen auf. Diese Abweichungen werden als Fenstereffekte bezeichnet. In dieser Aufgabe sehen wir uns den so- genannten Leakage-Effekt genauer an. Wir betrachten als Signal die komplexe Exponentialschwingung
+
+$$x[n] = e^{j\tfrac{2\pi}{M}n}$$
+
+\begin{enumerate}
+\item Setzen sie die Definition von $x[n]$ in die Gleichung für die DFT ein und Vereinfachen Sie den Ausdruck so gut es geht. (Tipp: Benützen Sie die Formel für die endliche Geometrische Reihe
+\item Wir setzen nun $M = N$. Wie ist diese Wahl im Hinblick auf die oben genannten Fälle zu interpretieren?
+\item Zeigen Sie, dass für $k \neq 1$ $X[k] = 0$ ist. (Ausgangspunkt: Ergebnis von (b))
+\item Zeigen Sie mit der Regel von de L'Hospital, dass $X[k] = N$ für $k = 1$ ist. (Ausgangspunkt: Ergebnis von (b))
+\item Das Ergebnis lautet also $X[k] = N \delta(k - 1)$. Interpretieren Sie dieses Ergebnis
+\end{enumerate}
+\end{highlightblock}

@@ -1,0 +1,126 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                       Lösung 4                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\subsection{Modifikation des Programms}\label{aufg:4a}
+
+Nach der Berechnung des Sinustons wird dieser in der \m{adsr_profile} Funktion verarbeitet und an das Musikstück angehängt.
+
+\begin{lstlisting}[language=matlab]
+% ...
+s = sin(Omega*n);             % tone
+sAdsr = adsr_profile(s);
+music = [music sAdsr];        % concatenated audio signal
+% ...
+\end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Grafische Ausgabe}\label{aufg:4b}
+
+Für die Grafische Ausgabe wurden, um das Signal besser ablesen zu können, die Segmente je nach Frequenz unterschiedlich eingefärbt. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{assets/adsr1.png}
+    \caption{Hüllkurven bewertetes Musiksignal}
+    \label{fig:adsr1}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Sampling Parameter}\label{aufg:4c}
+
+Die Abtastfrequenz und die Tondauer stehen bei der Verarbeitung des Signals im Verhältnis zur Anzahl der Samples für jeden Ton. Die Gesamtlänge des Signals wird damit länger, wenn
+
+\begin{itemize}
+    \item die Sample-Rate vermindert, oder
+    \item die Tondauer verlängert wird.
+\end{itemize}
+
+Die Zeiten der ADSR-Hüllkurve sind relativ zur Gesamtlänge angegeben. Ein Veränderung dieser Werte hat zur folge, dass die Einhüllende von jedem Ton eine andere Form hat, wie in Abbildung \ref{fig:adsr} gezeigt. Dabei ist zu beachten, dass $t_A+t_D+t_S<1$. Die Release-Zeit ist dann die verbleibende Zeit nach dem der Sustain abgelaufen ist. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Harmonische Anteile}\label{aufg:4d}
+
+Als Ziel wurde hier gewählt, den Ton einem Sägezahn anzunähern. Das kann erreicht werden, in dem weitere Sinusschwingungen mit einer ganzzahligen vielfachen Frequenz der Grundschwingung aufaddiert werden. Der Dämpfungsfaktor $\sfrac{1}{i}$ sorgt dafür, dass höhere Harmonische das Signal nicht verwüsten.
+
+\begin{lstlisting}[language=matlab]
+nHarmonics = 12;
+
+for k=1:length(pitch)           
+    % ...
+    s = 0;
+    for i = 1:nHarmonics
+        s = 1/i * sin(i*Omega*n) + s; 
+    end
+    % ...
+end
+\end{lstlisting}
+
+An einem stark vergrößertem Bild des Signals kann man das Sägezahn erkennen.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{assets/saw.png}
+    \caption{Sägezahn Signal}
+    \label{fig:saw}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\stepcounter{subsection}
+\subsection{Short-Time-Fourier-Transform}\label{aufg:4f}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{assets/stft3d.png}
+    \caption{3D STFT}
+    \label{fig:stft3d}
+\end{figure}
+
+\newpage
+\stepcounter{subsubsection}
+\subsubsection{Vergleich Notenblatt}\label{aufg:4f2}
+
+Speziell im Frequenzbereich der Grundschwingungen kann die Notenfolge gut erkannt werden.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{assets/stft1.png}
+    \caption{STFT von Unten}
+    \label{fig:stft1}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \input{assets/A4_Notes}
+    \caption{Notenblatt zum Vergleich}
+    \label{fig:notes}
+\end{figure}
+
+\subsubsection{FFT Länge reduzieren}\label{aufg:4f3}
+
+Mit einer kleineren FFT-Länge wird es zunehmen schwieriger, die genaue Frequenz des Signals zu ermitteln - die Amplitude verschmiert. Im Gegenzug werden jedoch die zeitlichen Übergänge der Töne schärfer. 
+
+\begin{figure}[h]
+\begin{minipage}{0.5\textwidth}\vspace{0pt}
+    \centering
+    \includegraphics[width=1\linewidth]{assets/stft512.png}
+    \caption{STFT 512}
+    \label{fig:stft512}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}\vspace{0pt}
+    \centering
+    \includegraphics[width=1\linewidth]{assets/stft256.png}
+    \caption{STFT 256}
+    \label{fig:stft256}
+\end{minipage}
+\end{figure}
+
+Dieser Zusammenhang ist durch das Zeit-Bandbreite-Produkt gegeben \cite[p.~41]{GrünigenDanielCh.von2008DS:m}:
+
+$$
+\Delta t\cdot\Delta f =\text{const}, \quad \text{const} \geq \frac{1}{4\pi}
+$$

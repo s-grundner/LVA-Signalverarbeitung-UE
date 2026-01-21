@@ -1,0 +1,7 @@
+\begin{highlightblock}[DFT vs. FFT (10 Punkte)] \label{aufg:1}
+In diesem Problem werden Sie die Ausführungszeiten von DFT und FFT Implementierungen vergleichen. Dazu sollen Sie zunächst in Matlab / Octave Funktionen schreiben, welche die DFT sowie die inverse DFT (IDFT) implementieren, indem Sie die jeweiligen Definitionsgleichungen umsetzen.
+
+Schreiben Sie dann eine Funktion \m{eval_dft_vs_fft(N)}, welche zunächst ein komplexwertiges Zufallssignal der Länge $N$ erstellt. Vergleichen Sie anschließend die Ausführungszeiten ihrer Implementierungen mit den Matlab built-in Funktionen (FFT + IFFT), indem Sie das komplexwertige Signal zunächst transformieren (DFT bzw. FFT) und dann wieder rücktransformieren (IDFT bzw. IFFT). Das heißt Ausgangssignal sollte gleich dem Eingangssignal sein.
+
+Um die Laufzeiten zu vergleichen verwenden Sie die Matlab Funktionen \m{tic} und \m{toc}. Zusätzlich sollen Sie den mittleren quadratischen Fehler (RMS error) zwischen den jeweiligen Eingangs- und Ausgangssignalen messen und vergleichen.
+\end{highlightblock}

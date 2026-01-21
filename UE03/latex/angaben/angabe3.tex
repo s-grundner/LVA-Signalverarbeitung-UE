@@ -1,0 +1,22 @@
+\begin{highlightblock}[Fenstereffekt der DFT II (10 Punkte)] \label{aufg:3}
+
+In dieser Aufgabe überprüfen wir in Matlab was passiert, wenn keiner der in Aufgabe \ref{aufg:2} genannten Fälle zutrifft ($M$ und $N$ teilerfremd). Dazu untersuchen wir ein Signal welches aus zwei benachbarten Kosinusschwingungen besteht. Dazu wird das eigentlich unendliche Signal einmal mit einem Rechteckfenster und einmal mit einem Hamming-Fenster zeit begrenzt. Wählen Sie:
+
+\begin{lstlisting}[language=matlab]
+N = 128;
+n = 0:N-1;
+w1 = 2*pi*0.1;
+w2 = 2*pi*0.15;
+x = cos(w1*n) + cos(w2*n); 
+\end{lstlisting}
+
+Hier wurde $x$ bereits (indirekt) mit einem Rechteckfenster gefenstert.
+
+\begin{enumerate}
+    \item Berechnen Sie das Spektrum von $x$ und stellen Sie dessen Betrag grafisch dar (Befehle: \m{fft}, \m{abs}, \m{stem}). Vergessen Sie die Achsenbeschriftung nicht.
+    \item Erzeugen Sie ein Hamming-Fenster mit \m{w = hamming(N).';} Generieren Sie damit das gefensterte Signal durch elementweises Multiplizieren von $w$ mit $x$ (Befehl: \m{w.*x}). Berechnen Sie davon das Spektrum und stellen Sie dessen Betrag grafisch dar. 
+    \item Interpretieren Sie die Ergebnisse von (a) und (b). 
+    \item Experimentieren Sie mit den Parametern $w_1$ und $w_2$ und finden Sie Einstellungen bei denen die DFT das exakte Ergebnis liefert. Erklären Sie auch, wieso mit den gewählten Einstellungen das DFT Ergebnis exakt ist.
+\end{enumerate}
+
+\end{highlightblock}

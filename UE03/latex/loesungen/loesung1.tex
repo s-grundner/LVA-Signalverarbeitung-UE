@@ -1,0 +1,29 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                        Lösung 1                        %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Die Definitionsgleichungen der DFT/IDFT lauten
+\begin{align*}
+F_{\mathrm{D}}[k]:=\sum_{n=0}^{N-1}f_{\mathrm{D}}[n]W^{kn}_{N}, && f_{\mathrm{D}}[n] := \frac{1}{N}\sum_{k=0}^{N-1}F_{\mathrm{D}}[k]W^{-kn}_{N} && W_N := e^{-j2\pi /N}
+\end{align*}
+
+und werden jeweils mittels einer doppelten \m{for}-Schleife implementiert, woher auch die schlechte Zeitkomplexität $\mathcal{O}(n^2)$ stammt.
+
+Das Matlab-Skript ist im Anbei. Die Ergebnisse der Evaluierung einer 1024 Punkt Transformation sind
+
+\begin{lstlisting}
+Results:
+DFT: t=1.163559, err=4.22e-13
+FFT: t=0.003367, err=3.19e-16
+Forward FT: err=2.84e-10
+Inverse FT: err=4.22e-13
+\end{lstlisting}
+
+mit der Fehlerrechnung
+
+\begin{lstlisting}[language=matlab]
+errDFT = rms(xInit - xIDFT); % Fehler zwischen echtem Signal und DFT rekonstruiertem
+errFFT = rms(xInit - xIFFT); % Fehler zwischen echtem Signal und FFT rekonstruiertem
+errFT  = rms(xFFT - xDFT);   % Fehler zwischen FFT und DFT
+errIFT = rms(xIFFT - xIDFT); % Fehler zwischen IFFT und IDFT
+\end{lstlisting}
