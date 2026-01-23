@@ -9,19 +9,3 @@
 | UE03 | [Protokoll](UE03/Signalverarbeitung_UE03.pdf) | DFT, FFT, STFT |
 | UE04 | [Protokoll](UE04/Signalverarbeitung_UE04.pdf) | z-Transformation |
 | UE05 | [Protokoll](UE05/Signalverarbeitung_UE05.pdf) | Dig. Filter, Minimalphasen/Allpass Systeme |
-
-# Overleaf Submodules
-
-### Submodule initalisieren
-
-`git clone <url> --recurse-submodules`
-
-- oder mit normalem clone und anschließendem submodules init
-
-`git clone <url> && git submodules init`
-
-### Submodule von Overleaf pullen
-
-`git submodule update --remote --merge`
-
-
